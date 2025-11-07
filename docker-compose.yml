@@ -1,0 +1,40 @@
+# We will keep the 'command: sleep 3600' for the api service
+# This is our temporary debugging step.
+
+services:
+  # 1. API Tier (Backend)
+  api:
+    build:
+      context: ./api  # Correct: Points to the 'api' folder
+      dockerfile: Dockerfile
+    container_name: my-api
+    ports:
+      - '5000:5000'
+    environment:
+      MONGO_URI: mongodb://mongo:27017/mydatabase
+    depends_on:
+      - mongo
+    #command: sleep 3600  # Our temporary command for debugging
+
+  # 2. Data Tier (Database)
+  mongo:
+    image: mongo:latest
+    container_name: my-mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo-data:/data/db
+
+  # 3. Web Tier (Frontend)
+  web:
+    build:
+      context: ./web  # <--- FIX 1: This MUST point to './web'
+      dockerfile: Dockerfile
+    container_name: my-web
+    ports:
+      - '80:80'
+    depends_on:
+      - api         # <--- FIX 2: Must depend on 'api'
+
+volumes:
+  mongo-data:

@@ -1,0 +1,51 @@
+--- General Node.js ---
+
+Folders for installing dependencies
+
+node_modules/
+
+Files for environment variables
+
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+Log files
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+--- Project Specific ---
+
+API backend
+
+api/node_modules/
+
+Web frontend
+
+web/node_modules/
+web/build/
+
+--- Operating System Files ---
+
+macOS
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+Windows
+
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+--- Common IDE Folders ---
+
+.vscode/
+.idea/
+*.swp
+*.swo
